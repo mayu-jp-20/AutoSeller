@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+ <html lang="ja" dir="ltr" xmlns:th="http://www.thymeleaf.org"
+ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+   <head>
+     <meta charset="utf-8">
+     <title>テスト</title>
+     <link rel="stylesheet" th:href="@{/css/user.css}"type="text/css"></link>
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" >
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" >
+   </head>
+
+  <body>
+   <div class="full-page">
+
+          <!-- ====テンプレート読み込み==== -->
+          <div th:insert="user/navbar::template"></div>
+
+ <h1>Qoo10ショップ設定</h1>
+
+     <!--エラ〜メッセージ-->
+     <p class="error_message">登録に失敗しました。もう一度お試し下さい。</p>
+
+   <div class="shop">
+   <form method="post"class="shop" name="aaa"th:action="@{/qoo10_config}"th:object="${qooShopForm}">
+
+   <div class="inputs">
+		<label class="label_aaa">商品命固定追加キーワード</label>
+		<input class="input_form"type="text"th:field="*{fixingKeywardForItem}">
+	</div>
+
+	<div class="inputs">
+     <label class="label_aaa" >販売数量</label>
+     <br>
+     <div class="cp-ipradio">
+       <ul>
+        <li class="list-item"th:each="item:${qtyRadio}">
+ 		  <input type="radio" th:value="${item.key}"th:field="*{itemQty}"th:text="${item.key}"class="option-input"  >
+        </li>
+       </ul>
+     </div>
+   </div>
+
+	<div class="inputs">
+       <label class="label_aaa">送料</label>
+	   <p th:text="${message}"></p>
+	   <ul>
+		 <li th:each="item:${radioItems}"class="md-radio">
+		   <input class="option-input" type="radio"th:value="${item.key}"th:text="${item.value}"th:field="*{shippingCode}">
+	     </li>
+	   </ul>
+	</div>
+
+	<div class="dragged_elm"><!-- inputs -->
+		 <label class="label_aaa">商品ページヘッダー</label>
+		 <textarea class="input_form1"th:field="*{itemPageHeader}"></textarea>
+	</div>
+
+    <div class="inputs">
+		 <label class="label_aaa">商品ページフッター</label>
+		 <textarea class="input_form1"th:field="*{itemPageFooter}"></textarea>
+	</div>
+
+	<div class="btn-area">
+		<input type="reset" value="リセット"><input type="submit" value="保存">
+	</div>
+</form>
+</div>
+
+
+                 <!-- Optional JavaScript -->
+                 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+                <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" ></script>
+  </div>
+   </body>
+</html>

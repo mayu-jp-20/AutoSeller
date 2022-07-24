@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="ja" dir="ltr"xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+ <head>
+    <meta charset="utf-8">
+    <title>ユーザー詳細</title>
+    <link rel="stylesheet" th:href="@{/css/admin.css}"type="text/css"></link>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" >
+</head>
+
+<body>
+
+  <div class="full-page">
+
+   <!-- ====テンプレート読み込み==== -->
+   <div th:insert="admin/admin_navbar::template"></div>
+
+   <h1>ユーザー情報</h1>
+
+   <div class="user">
+
+     <!--エラ〜メッセージ-->
+     <p class="error_message"th:text="${message}"></p>
+
+     <div class="user_table">
+     <table class="bbb"th:object="${userForm}">
+     <tr>
+       <th>氏名</th>
+       <td th:text="*{name}"></td>
+     </tr>
+     <tr>
+       <th>フリガナ</th>
+       <td th:text="*{kanaName}"></td>
+     </tr>
+     <tr>
+       <th>性別</th>
+       <td th:text="*{sex}"></td>
+     </tr>
+     <tr>
+       <th>生年月日</th>
+       <td th:text="*{birthday}"></td>
+     </tr>
+     <tr>
+       <th>メールアドレス</th>
+       <td th:text="*{userId}"></td>
+     </tr>
+     <tr>
+       <th>ステータス</th>
+       <td th:text="*{status}">
+       </td>
+     </tr>
+     <tr>
+       <th>アカウント状態</th>
+       <td th:text="*{strEnable}"></td>
+     </tr>
+     </table>
+
+     <a th:href="@{'/user_detail_admin/change/'+${userForm.userId}}"th:text="${change}" class="btn btn--orange"></a>
+     <a th:href="@{'/config_status/'+${userForm.userId}}" class="btn btn--orange">ステータスの変更</a>
+   </div>
+
+     <!-- Optional JavaScript -->
+     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" ></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    </div>
+  </div>
+</body>
+</html>

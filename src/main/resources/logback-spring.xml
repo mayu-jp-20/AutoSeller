@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+     <!-- デフォルト設定読み込み -->
+     <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+     <property name="logFileName" value="app"/>
+
+     <!-- ローカル環境用設定 -->
+     <springProfile name="default">
+          <property name="logFilePath" value="./"/>
+     </springProfile>
+
+     <!-- develop環境用設定 -->
+     <springProfile name="develop">
+          <property name="logFilePath" value="/var/log/velop/"/>
+     </springProfile>
+
+     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+          <target>System.out</target>
+          <encoder>
+               <charset>UTF-8</charset>
+               <pattern>%d{yyyy/MM/dd HH:mm:ss} %-5level [%thread] -%msg%n</pattern>
+          </encoder>
+     </appender>
+
+
+     <appender name="APPLICATION_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+          <file>src/main/resources/private/autoseller.log</file><!-- ローカルのファイルに出力されている -->
+          <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+               <fileNamePattern>${logFilePath}${logFileName}-%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+               <maxHistory>180</maxHistory>
+          </rollingPolicy>
+          <encoder>
+               <charset>UTF-8</charset>
+               <pattern>%d{yyyy/MM/dd HH:mm:ss} %-5level [%thread] -%msg%n</pattern>
+          </encoder>
+     </appender>
+
+
+     <logger name="demo.logger1" level="INFO">
+          <appender-ref ref="STDOUT"/>
+     </logger>
+
+     <root level="INFO">
+         <appender-ref ref="APPLICATION_LOG"/>
+     </root>
+</configuration>

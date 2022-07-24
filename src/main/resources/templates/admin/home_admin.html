@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html lang="ja" dir="ltr"xmlns:th="http://www.thymeleaf.org"
+       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  <head>
+    <meta charset="utf-8">
+    <title>管理者ホーム</title>
+    <link rel="stylesheet"th:href="@{/css/admin.css}"type="text/css" >
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
+  </head>
+
+ <body>
+
+  <div class="full-page">
+
+    <!-- ====テンプレート読み込み==== -->
+    <div th:insert="admin/admin_navbar::template"></div>
+
+    <h1>未確認ブラウズノード</h1>
+
+    <div class="prouse">
+
+    <form th:action="@{/home_admin}" method="post"th:object="${list}">
+    <table class="prouse">
+      <tr>
+        <th class="prouse">カテゴリー名</th>
+        <th class="serect"></th>
+      </tr>
+      <tr th:each="list:${list}">
+        <td th:text="${list.browse}"></td><!-- th:field="*{list[_${list.index}_].browse}" -->
+        <td>
+          <label>
+            <input type="radio" name="name"value="OK">
+            OK
+          </label>
+          <label>
+            <input type="radio" name="name"value="NG">
+            NG
+          </label>
+        </td>
+      </tr>
+    </table>
+
+    <button type="submit" class="btn btn--blue">登録</button>
+
+    </form>
+
+    </div>
+
+     <!-- Optional JavaScript -->
+     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" ></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" ></script>
+
+  </div>
+</body>
+</html>

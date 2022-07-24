@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lang="ja" dir="ltr" xmlns:th="http://www.thymeleaf.org"
+       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8">
+    <title>商品詳細</title>
+    <link rel="stylesheet"th:href="@{/css/user.css}"type="text/css"></link>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" >
+</head>
+
+<body>
+
+    <div class="full-page">
+
+   <!-- ====テンプレート読み込み==== -->
+   <div th:insert="user/navbar::template"></div>
+
+   <h1>商品詳細</h1>
+
+   <div class="detail">
+     <table class="aaa"th:object="${form}">
+       <tr>
+         <th>ASIN</th>
+         <td th:text="*{asin}"></td>
+       </tr>
+       <tr>
+         <th>商品名</th>
+         <td th:text="*{title}"></td>
+       </tr>
+       <tr>
+         <th>説明</th>
+         <td th:text="*{feature}"></td>
+      </tr>
+      <tr>
+        <th>情報</th>
+        <td th:text="*{strAttrList}"></td>
+      </tr>
+      <tr>
+         <th>カテゴリ</th>
+         <td th:text="*{category}"></td>
+       </tr>
+       <tr>
+         <th>ランキング</th>
+         <td th:text="*{rank}"></td>
+       </tr>
+       <tr>
+         <th>価格</th>
+         <td th:text="*{price}"></td>
+       </tr>
+       <tr>
+         <th>累計アクセス</th>
+         <td  th:text="*{allAccess}"></td>
+       </tr>
+       <tr>
+         <th>月間アクセス</th>
+         <td  th:text="*{monthlyAccess}"></td>
+       </tr>
+       <tr>
+         <th>累計販売</th>
+         <td  th:text="*{allSales}"></td>
+       </tr>
+       <tr>
+         <th>月間販売</th>
+         <td th:text="*{monthlySales}"></td>
+       </tr>
+     </table>
+
+     <!-- Optional JavaScript -->
+     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" ></script>
+
+    </div>
+    </div>
+
+  </body>
+ </html>
